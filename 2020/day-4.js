@@ -66,7 +66,6 @@ const DATA = [];
   const hgtValidation = (value, helpers) => {
     const type = value.substr(-2);
 
-
     let valid = false;
     if (type === 'cm') {
       const [ number, _ ] = value.split('cm');
@@ -85,7 +84,7 @@ const DATA = [];
     byr: Joi.number().min(1920).max(2002),
     iyr: Joi.number().min(2010).max(2020),
     eyr: Joi.number().min(2020).max(2030),
-    hgt: Joi.string().custom(hgtValidation, 'custom validation'),
+    hgt: Joi.string().custom(hgtValidation),
     hcl: Joi.string().pattern(/^#[A-Fa-f0-9]{6}/),
     ecl: Joi.string().valid('amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'),
     pid: Joi.string().min(9).max(9),
