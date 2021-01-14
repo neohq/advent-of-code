@@ -8,8 +8,8 @@ const Joi = require('joi');
 
 const DATA = [];
 {
-  // const input = fs.readFileSync(path.resolve(__dirname, './input-demo-day-4.txt'), { encoding: 'utf8', flag: 'r' });
-  const input = fs.readFileSync(path.resolve(__dirname, './input-day-4.txt'), { encoding: 'utf8', flag: 'r' });
+  // const input = fs.readFileSync(path.resolve(__dirname, './day-4-demo-input.txt'), { encoding: 'utf8', flag: 'r' });
+  const input = fs.readFileSync(path.resolve(__dirname, './day-4-input.txt'), { encoding: 'utf8', flag: 'r' });
   const split = input.split('\n');
 
   let innerObj = {};
