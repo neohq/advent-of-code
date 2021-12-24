@@ -60,8 +60,6 @@ const DATA = [];
 /**
  * Part Two
  */
-
-
 {
   const hgtValidation = (value, helpers) => {
     const type = value.substr(-2);
