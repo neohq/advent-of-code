@@ -37,7 +37,9 @@ const getSurfaceInfo = (l, w, h) => {
     lwSide / 2, whSide / 2, hlSide / 2,
   ]);
 
-  const [smallestOne, smallestTwo] = [l, w, h].sort((a, b) => a - b).slice(0, 2);
+  const [smallestOne, smallestTwo] = [l, w, h]
+    .sort((a, b) => a - b)
+    .slice(0, 2);
 
   return {
     surfaceWithSmallest: lwSide + whSide + hlSide + smallestSide,
