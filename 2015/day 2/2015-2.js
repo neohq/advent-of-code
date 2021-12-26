@@ -29,17 +29,19 @@ let DATA = [];
 }
 
 const getSurfaceInfo = (l, w, h) => {
-  const sideOne = 2*l*w;
-  const sideTwo = 2*w*h;
-  const sideThree = 2*h*l;
+  const lwSide = 2*l*w;
+  const whSide = 2*w*h;
+  const hlSide = 2*h*l;
 
   const smallestSide = Math.min(...[
-    sideOne / 2, sideTwo / 2, sideThree / 2,
+    lwSide / 2, whSide / 2, hlSide / 2,
   ]);
 
+  const [smallestOne, smallestTwo] = [l, w, h].sort((a, b) => a - b).slice(0, 2);
+
   return {
-    surfaceWithSmallest: sideOne + sideTwo + sideThree + smallestSide,
-    perimeterOfSmallest: 0,
+    surfaceWithSmallest: lwSide + whSide + hlSide + smallestSide,
+    perimeterOfSmallest: (smallestOne + smallestTwo) * 2,
   }
 }
 
