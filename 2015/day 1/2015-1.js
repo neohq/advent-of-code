@@ -18,8 +18,8 @@ let INPUT;
   for (let i = 0; i < INPUT.length; i++) {
     const char = INPUT.charAt(i);
     
-    if (char === '(') floor++;
-    if (char === ')') floor--;
+    if (char === '(') floor++; // floor + 1;
+    if (char === ')') floor--; // floor - 1
   }
   
   console.log(`Floor: ${floor}`);
