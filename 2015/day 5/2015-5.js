@@ -25,33 +25,20 @@ const path = require('path');
 
   for (let string of DATA) {
     // Rule 1
-    let vowels = 0;
-    for (const char of string.split('')) {
-      if (['a', 'e', 'i', 'o', 'u'].includes(char)) vowels++;
-    }
+    const hasAtLeastThreeVowles = string.match(/(.*[aeiou]){3}/g) !== null;
 
     // Rule 2
-    let doubleLetter = 0;
-    let prevChar = null;
-    for (const char of string.split('')) {
-      if (char === prevChar) doubleLetter++;
-      prevChar = char;
-    }
+    const hasDoubleChars = string.match(/(.)\1{1,}/g) !== null;
 
     // Rule 3
-    const containsForbidden = ['ab', 'cd', 'pq', 'xy'].some(
-      forbidden => string.includes(forbidden),
-    );
+    const containsForbidden = string.match(/(?:ab|cd|pq|xy)+/g) !== null;
 
-    if (vowels >= 3 && doubleLetter >= 1 && !containsForbidden) {
+    if (hasAtLeastThreeVowles && hasDoubleChars && !containsForbidden) {
       niceStrings++;
     }
-
-    // console.log(vowels, doubleLetter, containsForbidden);
   }
 
   console.log(`Part One - nice strings: ${niceStrings}`);
-
  }
 
  /**
@@ -62,29 +49,7 @@ const path = require('path');
 
   for (let string of DATA) {
     // Rule 1
-    let hasDuplicatePair = false;
-    {
-      const letterPairs = [];
-      for (let i = 0; i < string.length; i++) {
-        if (i === 0) continue;
-
-        const pair = string.slice(i-1,i+1);
-
-        // Delete from list because it overlaps, ex: "aaa" => [aa,aa]
-        if (letterPairs[letterPairs.length - 1] === pair) {
-          delete letterPairs[pair];
-          console.log(`${string} - deleting overlap`);
-          continue;
-        }
-
-        letterPairs.push(pair);
-      }
-
-      letterPairs.forEach((pair) => {
-        if (letterPairs.includes(pair)) hasDuplicatePair = true;
-      });
-    }
-
+    let hasDuplicatePair = string.match(/(\w{2}).*?(\1)/g) !== null;
 
     // Rule 2
     let repeatingLettersBetween = false;
@@ -98,8 +63,6 @@ const path = require('path');
         }
       }
     }
-
-    // console.log(string, letterPairs, containsOverlapPair, repeatingLettersBetween);
 
     if (hasDuplicatePair && repeatingLettersBetween) {
       niceStrings++;
