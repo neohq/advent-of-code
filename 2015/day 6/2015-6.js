@@ -19,21 +19,25 @@ let DATA = [];
     let from;
     let to;
 
+    const splitCoordinates = (string) => {
+      return string.split(',').map((x) => parseInt(x, 10));
+    }
+
     if (splitedRow[0] === 'toggle') {
       action = 'toggle';
-      from = splitedRow[1].split(',');
-      to = splitedRow[3].split(',');
+      from = splitCoordinates(splitedRow[1]);
+      to = splitCoordinates(splitedRow[3]);
     } else {
       action = splitedRow[1];
-      from = splitedRow[2].split(',');
-      to = splitedRow[4].split(',');
+      from = splitCoordinates(splitedRow[2]);
+      to = splitCoordinates(splitedRow[4]);
     }
 
     DATA.push({ action, from, to });
   }
 }
 
-// console.log(DATA);
+const key = (x, y) => `${x}:${y}`;
 
 /**
  * Part One
@@ -41,13 +45,65 @@ let DATA = [];
 {
   const lightsGrid = {};
 
+  // Create grid with off positions
   for (let x = 0; x <= 999; x++) {
     for(let y = 0; y <= 999; y++) {
-      lightsGrid[`${x}:${y}`] = false;
+      lightsGrid[key(x,y)] = false;
     }
   }
 
-  lightsGrid['999:999'] = true;
+  for (const row of DATA) {
+    const { from, to, action } = row;
 
-  // console.log(lightsGrid);
+    for (let x = from[0]; x <= to[0]; x++) {
+      for (let y = from[1]; y <= to[1]; y++) {
+        if (['on', 'off'].includes(action)) {
+          lightsGrid[key(x,y)] = action === 'on';
+        }
+         if (action === 'toggle') {
+          lightsGrid[key(x,y)] = !lightsGrid[key(x,y)];
+        }
+      }
+    }
+  }
+
+  const onLights = Object.entries(lightsGrid).filter(
+    ([key, value]) => value === true,
+  );
+
+  console.log('** Part One **');
+  console.log(`- all lights: ${Object.keys(lightsGrid).length}`);
+  console.log(`- on lights: ${onLights.length}`);
+}
+
+/**
+ * Part Two
+ */
+{
+  const lightsGrid = {};
+
+  // Create grid with 0 brightness
+  for (let x = 0; x <= 999; x++) {
+    for(let y = 0; y <= 999; y++) {
+      lightsGrid[key(x,y)] = 0;
+    }
+  }
+
+  for (const row of DATA) {
+    const { from, to, action } = row;
+
+    for (let x = from[0]; x <= to[0]; x++) {
+      for (let y = from[1]; y <= to[1]; y++) {
+        if (action === 'on') {
+          lightsGrid[key(x,y)] = lightsGrid[key(x,y)] + 1;
+        }
+        if (action === 'off') {
+          lightsGrid[key(x,y)] = lightsGrid[key(x,y)] - 1;
+        }
+        if (action === 'toggle') {
+          lightsGrid[key(x,y)] = lightsGrid[key(x,y)] + 2;
+        }
+      }
+    }
+  }
 }
