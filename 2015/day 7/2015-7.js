@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
-const { toUnicode } = require('punycode');
+
+const uint16 = (val) => {
+	return 0xFFFF0000 | val;
+}
 
 /**
  * Convert input
@@ -28,10 +31,6 @@ const { toUnicode } = require('punycode');
 }
 
 console.log(DATA);
-
-const uint16 = (val) => {
-	return 0xFFFF0000 | val;
-}
 
 /**
  * Part One
