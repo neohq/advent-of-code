@@ -14,9 +14,20 @@ const { toUnicode } = require('punycode');
   const rows = input.split('\n');
 
   for (const row of rows) {
-    console.log(row);
+    const split = row.split(' ');
+
+    const action = split.find(
+      (el) => ['NOT', 'AND', 'OR', 'LSHIFT', 'RSHIFT'].includes(el),
+    );
+
+    DATA.push({
+      action: action ?? 'SET',
+      info: split,
+    });
   }
 }
+
+console.log(DATA);
 
 const uint16 = (val) => {
 	return 0xFFFF0000 | val;
