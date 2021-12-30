@@ -98,7 +98,7 @@ const key = (x, y) => `${x}:${y}`;
           lightsGrid[key(x,y)] = lightsGrid[key(x,y)] + 1;
         }
         if (action === 'off') {
-          lightsGrid[key(x,y)] = lightsGrid[key(x,y)] - 1;
+          lightsGrid[key(x,y)] = Math.max(0, lightsGrid[key(x,y)] - 1);
         }
         if (action === 'toggle') {
           lightsGrid[key(x,y)] = lightsGrid[key(x,y)] + 2;
@@ -106,4 +106,12 @@ const key = (x, y) => `${x}:${y}`;
       }
     }
   }
+
+  let lightsBrightness = 0;
+  Object.values(lightsGrid).forEach((value) => {
+    lightsBrightness += value;
+  });
+
+  console.log('** Part Two **');
+  console.log(`- total brightness: ${lightsBrightness}`);
 }
