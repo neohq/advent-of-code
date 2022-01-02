@@ -25,21 +25,21 @@ let DATA = [];
     let stringChars = 0;
     const totalCodeChars = row.length;
 
-    const escapedPattern = /\\"|\\\\+/g;
+    const escapedPattern = /\\"|\\\\/g;
     const escaped = row.match(escapedPattern);
     if (escaped) {
       stringChars += escaped.length;
       row = row.replace(escapedPattern, '');
     }
 
-    const hexPattern = /\\x[0-9a-f]{2}/g;
+    const hexPattern = /\\x[\w]{2}/g;
     const hex = row.match(hexPattern);
     if (hex) {
       stringChars += hex.length;
       row = row.replace(hexPattern, '')
     }
 
-    const quotesPattern = /["]+/g;
+    const quotesPattern = /"/g;
     const quotes = row.match(quotesPattern);
     if (quotes) {
       row = row.replace(quotesPattern, '');
