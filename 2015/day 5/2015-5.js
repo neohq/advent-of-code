@@ -10,11 +10,7 @@ const path = require('path');
      path.resolve(__dirname, './2015-5-input.txt'), 
      { encoding: 'utf8', flag: 'r' },
    );
-   const rows = input.split('\n');
- 
-   for (const row of rows) {
-     DATA.push(row);
-   }
+   DATA = input.split('\n');
  }
 
  /**
