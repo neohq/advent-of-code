@@ -21,7 +21,7 @@ let DATA = [];
   let total = 0;
 
   for (let row of DATA) {
-    console.log(row);
+    // console.log(row);
     let stringChars = 0;
     const totalCodeChars = row.length;
 
@@ -32,7 +32,7 @@ let DATA = [];
       row = row.replace(escapedPattern, '');
     }
 
-    const hexPattern = /\\x[\w]{2}/g;
+    const hexPattern = /\\x[0-9a-f]{2}/g;
     const hex = row.match(hexPattern);
     if (hex) {
       stringChars += hex.length;
@@ -46,10 +46,10 @@ let DATA = [];
       stringChars += row.length;
     }
 
-    console.log({
-      totalCodeChars,
-      stringChars,
-    }, '\n');
+    // console.log({
+    //   totalCodeChars,
+    //   stringChars,
+    // }, '\n');
 
     total += totalCodeChars - stringChars;
   }
