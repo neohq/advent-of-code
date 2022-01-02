@@ -25,28 +25,31 @@ let DATA = [];
     let stringChars = 0;
     const totalCodeChars = row.length;
 
-    const escaped = row.match(/\\"|\\\\+/g);
+    const escapedPattern = /\\"|\\\\+/g;
+    const escaped = row.match(escapedPattern);
     if (escaped) {
       stringChars += escaped.length;
-      row = row.replace(/\\"|\\\\+/g, '');
+      row = row.replace(escapedPattern, '');
     }
 
-    const hex = row.match(/(\\x[\w]{2})+/g);
+    const hexPattern = /\\x[0-9a-f]{2}/g;
+    const hex = row.match(hexPattern);
     if (hex) {
       stringChars += hex.length;
-      row = row.replace(/(\\x[\w]{2})+/g, '')
+      row = row.replace(hexPattern, '')
     }
 
-    const quotes = row.match(/["]+/g);
+    const quotesPattern = /["]+/g;
+    const quotes = row.match(quotesPattern);
     if (quotes) {
-      row = row.replace(/["]+/g, '');
+      row = row.replace(quotesPattern, '');
       stringChars += row.length;
     }
 
     console.log({
       totalCodeChars,
       stringChars,
-    });
+    }, '\n');
 
     total += totalCodeChars - stringChars;
   }
