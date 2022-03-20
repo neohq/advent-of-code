@@ -16,9 +16,11 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "big.js": "^6.1.1",
     "joi": "^17.3.0",
     "lodash": "^4.17.20",
     "md5": "^2.3.0",
+    "moment": "^2.29.1",
     "node-fetch": "^2.6.1",
     "request": "^2.88.2"
   }
