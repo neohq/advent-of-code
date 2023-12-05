@@ -65,8 +65,8 @@ let DATA = [];
   for (const row of DATA) {
     const numbersInRowArr = [];
 
-    for (const el in numbersMatch) {
-      for (const match of row.matchAll(new RegExp(el, 'g'))) {
+    for (const key in numbersMatch) {
+      for (const match of row.matchAll(new RegExp(key, 'g'))) {
         numbersInRowArr.push([match[0], match.index]);
       }
     }
