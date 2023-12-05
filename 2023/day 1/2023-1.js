@@ -67,27 +67,27 @@ let DATA = [];
 
     for (const key in numbersMatch) {
       for (const match of row.matchAll(new RegExp(key, 'g'))) {
-        numbersInRowArr.push([match[0], match.index]);
+        numbersInRowArr.push([match[0], match.index]); // ['two', 2]
       }
     }
 
     const sortedNumbersInRowArr = numbersInRowArr.sort((a, b) => {
       return a[1] - b[1];
-    }).flatMap((arr) => arr[0]);
+    }).flatMap((arr) => arr[0]); // ['two', '2, 'three']
 
     const convertedNumbersInRowArr = [];
     for (const el of sortedNumbersInRowArr) {
-      convertedNumbersInRowArr.push(numbersMatch[el])
+      convertedNumbersInRowArr.push(numbersMatch[el]) // Convert 'two' in 2
     }
 
 
     const firstArrEl = convertedNumbersInRowArr.at(0);
     const lastArrEl = convertedNumbersInRowArr.at(convertedNumbersInRowArr.length - 1);
 
-    accumulator += Number('' + firstArrEl + lastArrEl);
+    accumulator += Number(`${firstArrEl}${lastArrEl}`);
 
     // console.log(numbersInRowArr, convertedNumbersInRowArr, Number('' + firstArrEl + lastArrEl));
   }
 
-  console.log(`Sum of all calibration numbers: ${accumulator}`);
+  console.log(`Sum of all calibration numbers: ${accumulator}`); // 53221
 }
