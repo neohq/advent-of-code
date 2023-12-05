@@ -2,12 +2,12 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * Conver input
+ * Convert input
  */
 let DATA = [];
 {
   const input = fs.readFileSync(
-    path.resolve(__dirname, './2015-6-input.txt'), 
+    path.resolve(__dirname, './2015-6-input.txt'),
     { encoding: 'utf8', flag: 'r' },
   );
   const rows = input.split('\n');
