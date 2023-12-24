@@ -49,7 +49,7 @@ let DATA = [];
 
 
     if (isSetValid) {
-      possibleGames += parseInt(game);
+      possibleGames += Number(game);
     }
   }
 
@@ -76,7 +76,7 @@ let DATA = [];
       const [nr, color] = cube.split(' ');
 
       if (nr > gameColors[color]) {
-        gameColors[color] = parseInt(nr);
+        gameColors[color] = Number(nr);
       }
     }
 
