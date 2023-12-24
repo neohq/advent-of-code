@@ -75,16 +75,16 @@ let DATA = [];
     for (const cube of cubes) {
       const [nr, color] = cube.split(' ');
 
-      if (nr > gameColors[color]) {
+      if (Number(nr) > gameColors[color]) {
         gameColors[color] = Number(nr);
       }
     }
 
     // console.log(gameColors);
 
-    const powerOfColors = Object.values(gameColors).reduce((acc, val) => acc * val);
+    const power = Object.values(gameColors).reduce((acc, val) => acc * val);
 
-    finalNumber += powerOfColors;
+    finalNumber += power;
   }
 
   console.log(`Result: ${finalNumber}`);
