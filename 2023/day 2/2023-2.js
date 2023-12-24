@@ -87,5 +87,5 @@ let DATA = [];
     finalNumber += power;
   }
 
-  console.log(`Result: ${finalNumber}`);
+  console.log(`Result: ${finalNumber}`); // 56580
 }
