@@ -7,8 +7,8 @@ const path = require('path');
 let DATA = [];
 {
   const input = fs.readFileSync(
-    path.resolve(__dirname, './2023-3-demo.txt'),
-    // path.resolve(__dirname, './2023-3-input.txt'),
+    // path.resolve(__dirname, './2023-3-demo.txt'),
+    path.resolve(__dirname, './2023-3-input.txt'),
     { encoding: 'utf8', flag: 'r' },
   );
   DATA = input.split('\n');
@@ -40,7 +40,7 @@ for (const row of DATA) {
       // console.log(`  row: ${rowToCheck}`);
 
       // Start at -1 and end +1 to also check chars before and after the number
-      // Prevent checking outside of row length
+      // Prevent checking outside of row size
       const checkStart = Math.max(startIndex - 1, 0);
       const checkEnd = Math.min(endIndex + 1, rowToCheck.length);
 
@@ -97,4 +97,4 @@ Object.keys(gears).map((key) => {
     gearsRatiosSum += gearRatio;
   }
 })
-console.log(`Part Two: ${gearsRatiosSum}`);
+console.log(`Part Two: ${gearsRatiosSum}`); // 72514855
