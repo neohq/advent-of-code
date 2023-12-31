@@ -7,8 +7,8 @@ const path = require('path');
 let DATA = [];
 {
   const input = fs.readFileSync(
-    path.resolve(__dirname, './2023-4-demo.txt'),
-    // path.resolve(__dirname, './2023-4-input.txt'),
+    // path.resolve(__dirname, './2023-4-demo.txt'),
+    path.resolve(__dirname, './2023-4-input.txt'),
     { encoding: 'utf8', flag: 'r' },
   );
   DATA = input.split('\n');
@@ -19,15 +19,32 @@ let DATA = [];
  * Part One
  */
 {
+  let partOneResult = 0;
   const formattedData = [];
-  let cardIndex = 1;
+
   for (const row of DATA) {
     const [_, numbers] = row.split(': ');
-    const [winningNumbers, numbersPool] = numbers.split(' | ');
-    // console.log(winningNumbers, '-', numbersPool);
+    let [winningNumbers, pool] = numbers.split(' | ');
 
-    formattedData.push({ winningNumbers, numbersPool });
+    winningNumbers = winningNumbers.split(' ').filter((val) => val);
+    pool = pool.split(' ').filter((val) => val);
+
+    const intersection = winningNumbers.filter((val) => pool.includes(val));
+
+    let acc = 0;
+    for (let i = 0; i < intersection.length; i++) {
+      if (i === 0) {
+        acc = 1;
+      } else {
+        acc *= 2;
+      }
+    }
+
+    formattedData.push({ winningNumbers, pool, intersection, acc });
+
+    partOneResult += acc;
   }
 
-  console.log(formattedData);
+  // console.log(formattedData);
+  console.log(`Part One: ${partOneResult}`);
 }
